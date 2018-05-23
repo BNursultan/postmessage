@@ -2,7 +2,7 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const webpackConfig = {
-  mode: process.env.NODE_ENV,
+  mode: 'development',
   entry: './main.js',
   output: {
     filename: 'wedding.umd.js',
