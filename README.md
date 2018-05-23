@@ -20,3 +20,45 @@ _in browser:_
 ```  
 
   
+### Usage  
+  
+You can be either `connecter` or not. Connecter creates iframe and trying to connect to it every second.  
+You have to create global variable to initialize Wedding.  
+  
+```
+// Have to initialize
+var wedding = Wedding(options)
+```  
+  
+### Methods  
+  
+`connect`  
+Trying to connect to iframe with provided Url. You have to exist in whitelist in connected iframe.
+   
+`on`  
+  
+  
+`emit`  
+  
+  
+`off`  
+  
+  
+
+### Options
+
+*isConnecter:* Boolean 
+default: false  
+  
+If `true` then you have method `connect`.  
+  
+
+*whitelist:* Array (required)
+   
+Whitelist of websites.  
+  
+*url* String (required)  
+  
+Url for generated iframe.  
+  
+  
