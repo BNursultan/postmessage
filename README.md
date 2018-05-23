@@ -1,7 +1,10 @@
 # Wedding Library
-  
+    
+
 ### Install and usage  
-  
+    
+
+
 ```
 npm install -S alfa-wedding
 ```  
@@ -20,7 +23,9 @@ _in browser:_
 ```  
 
   
-### Usage  
+### Usage    
+   
+
   
 You can be either `connecter` or not. Connecter creates iframe and trying to connect to it every second.  
 You have to create global variable to initialize Wedding.  
@@ -30,9 +35,12 @@ You have to create global variable to initialize Wedding.
 var wedding = Wedding(options)
 ```  
   
-### Methods  
+### Methods    
   
-`connect`  
+
+  
+`connect`    
+  
 Trying to connect to iframe with provided Url. You have to exist in whitelist in connected iframe.
    
 `on`  
@@ -45,20 +53,21 @@ Trying to connect to iframe with provided Url. You have to exist in whitelist in
   
   
 
-### Options
+### Options  
 
-*isConnecter:* Boolean 
+  
+
+**isConnecter:** Boolean 
 default: false  
   
 If `true` then you have method `connect`.  
   
 
-*whitelist:* Array (required)
+**whitelist:** Array (required)
    
 Whitelist of websites.  
   
-*url* String (required)  
+**url** String (required)  
   
 Url for generated iframe.  
-  
   
