@@ -1,4 +1,4 @@
-class Emitter extends null {
+class Emitter {
   events = Object.create(null);
 
   on(name, fn) {

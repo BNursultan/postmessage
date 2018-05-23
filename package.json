@@ -35,7 +35,8 @@
               "last 2 versions",
               "IE >= 7"
             ]
-          }
+          },
+          "loose": true
         }
       ]
     ],
