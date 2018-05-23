@@ -1,5 +1,7 @@
 class Emitter {
-  events = Object.create(null);
+  constructor() {
+    this.events = Object.create(null);
+  }
 
   on(name, fn) {
     if (this.events[name]) {
