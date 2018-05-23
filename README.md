@@ -40,7 +40,7 @@ var wedding = Wedding(options)
 
   
 `connect`    
-  
+
 Trying to connect to iframe with provided Url. You have to exist in whitelist in connected iframe.
    
 `on`  
@@ -67,7 +67,7 @@ If `true` then you have method `connect`.
    
 Whitelist of websites.  
   
-**url** String (required)  
+**url** String  (required if isConnecter)
   
 Url for generated iframe.  
   
