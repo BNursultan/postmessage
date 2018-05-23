@@ -1,6 +1,7 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-module.exports = {
+const webpackConfig = {
   mode: process.env.NODE_ENV,
   entry: './main.js',
   output: {
@@ -20,4 +21,16 @@ module.exports = {
     ],
   },
   devtool: 'source-map',
+  plugins: [],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  webpackConfig.plugins.push(new UglifyJsPlugin({
+    sourceMap: true,
+    uglifyOptions: {
+      ie8: true,
+    },
+  }));
+}
+
+module.exports = webpackConfig;
