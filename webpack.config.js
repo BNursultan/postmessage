@@ -1,7 +1,8 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const webpackConfig = {
-  mode: process.env.NODE_ENV,
+  mode: 'development',
   entry: ['core-js/es5', './main.js'],
   output: {
     filename: 'wedding.umd.js',
@@ -20,6 +21,15 @@ const webpackConfig = {
     ],
   },
   devtool: 'source-map',
+  plugins: [],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  webpackConfig.plugins.push(new UglifyJsPlugin({
+    uglifyOptions: {
+      ie8: true,
+    },
+  }));
+}
 
 module.exports = webpackConfig;
