@@ -1,3 +1,16 @@
+const attachListener = (e) => {
+  if (!this.whitelist.includes(e.origin)) {
+    console.error('Origin is not included in whitelist');
+    return;
+  }
+
+  this.origin = e.origin;
+
+  if (this.events[e.data]) {
+    this.events[e.data]();
+  }
+};
+
 // Create connection function
 // creates iFrame and trying to connect inside with interval
 export function createConnection(url, callback) {
@@ -32,31 +45,9 @@ export function createConnectionListener() {
   }
 
   if (window.addEventListener) {
-    window.addEventListener('message', (e) => {
-      if (!this.whitelist.includes(e.origin)) {
-        console.error('Origin is not included in whitelist');
-        return;
-      }
-
-      this.origin = e.origin;
-
-      if (this.events[e.data]) {
-        this.events[e.data]();
-      }
-    }, false);
+    window.addEventListener('message', attachListener, false);
   } else {
-    window.attachEvent('onmessage', (e) => {
-      if (!this.whitelist.includes(e.origin)) {
-        console.error('Origin is not included in whitelist');
-        return;
-      }
-
-      this.origin = e.origin;
-
-      if (this.events[e.data]) {
-        this.events[e.data]();
-      }
-    });
+    window.attachEvent('onmessage', attachListener);
   }
 }
 
