@@ -1,8 +1,4 @@
 class Emitter {
-  constructor() {
-    this.events = Object.create(null);
-  }
-
   on(name, fn) {
     if (this.events[name]) {
       console.error('This event listner already exists');

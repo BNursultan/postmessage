@@ -1,6 +1,10 @@
 // Create connection function
 // creates iFrame and trying to connect inside with interval
 export function createConnection(url) {
+  if (typeof window === 'undefined') {
+    return null;
+  }
+
   const frame = document.createElement('iframe');
 
   Object.assign(frame, {
@@ -16,7 +20,12 @@ export function createConnection(url) {
 }
 
 // Create connection listner on window
-export function createConnectionListener(whitelist, self) {
+export function createConnectionListener(whitelist) {
+  // This doesn't while server side rendered
+  if (typeof window === 'undefined') {
+    return;
+  }
+
   if (window.addEventListener) {
     window.addEventListener('message', (e) => {
       if (!whitelist.includes(e.origin)) {
@@ -24,7 +33,9 @@ export function createConnectionListener(whitelist, self) {
         return;
       }
 
-      self.events[e.data]();
+      if (this.events[e.data]) {
+        this.events[e.data]();
+      }
     }, false);
   } else {
     window.attachEvent('onmessage', (e) => {
@@ -33,7 +44,9 @@ export function createConnectionListener(whitelist, self) {
         return;
       }
 
-      self.events[e.data]();
+      if (this.events[e.data]) {
+        this.events[e.data]();
+      }
     });
   }
 }

@@ -7,6 +7,7 @@ class Wedding extends Emitter {
     super();
 
     Object.assign(this, {
+      events: Object.create(null),
       isConnecter,
       url,
       whitelist,
@@ -15,7 +16,7 @@ class Wedding extends Emitter {
       status: statuses.disconnected,
     });
 
-    createConnectionListener(this.whitelist);
+    createConnectionListener.call(this.whitelist);
     initEvents.call(this);
   }
 
@@ -23,6 +24,11 @@ class Wedding extends Emitter {
     if (this.isConnecter) {
       console.info('Initializing connection');
       this.frame = createConnection(this.url);
+
+      if (!this.frame) {
+        console.error('Connector does not work in SSR');
+        return;
+      }
 
       this.connectionInterval = setInterval(() => {
         this.emit('connection:start');
