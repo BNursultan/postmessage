@@ -13,5 +13,6 @@ export default function initEvents() {
     this.status = statuses.connected;
 
     console.info('Connection established');
+    this.emit('start');
   });
 }
