@@ -17,14 +17,25 @@ export function createConnection(url) {
 
 // Create connection listner on window
 export function createConnectionListener(whitelist, self) {
-  window.addEventListener('message', (e) => {
-    if (!whitelist.includes(e.origin)) {
-      console.error('Origin is not included in whitelist');
-      return;
-    }
+  if (window.addEventListener) {
+    window.addEventListener('message', (e) => {
+      if (!whitelist.includes(e.origin)) {
+        console.error('Origin is not included in whitelist');
+        return;
+      }
 
-    self.events[e.data]();
-  }, false);
+      self.events[e.data]();
+    }, false);
+  } else {
+    window.attachEvent('onmessage', (e) => {
+      if (!whitelist.includes(e.origin)) {
+        console.error('Origin is not included in whitelist');
+        return;
+      }
+
+      self.events[e.data]();
+    });
+  }
 }
 
 // Validations
