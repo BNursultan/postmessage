@@ -20,7 +20,7 @@ export function createConnection(url) {
 }
 
 // Create connection listner on window
-export function createConnectionListener(whitelist) {
+export function createConnectionListener() {
   // This doesn't while server side rendered
   if (typeof window === 'undefined') {
     return;
@@ -28,7 +28,7 @@ export function createConnectionListener(whitelist) {
 
   if (window.addEventListener) {
     window.addEventListener('message', (e) => {
-      if (!whitelist.includes(e.origin)) {
+      if (!this.whitelist.includes(e.origin)) {
         console.error('Origin is not included in whitelist');
         return;
       }
@@ -39,7 +39,7 @@ export function createConnectionListener(whitelist) {
     }, false);
   } else {
     window.attachEvent('onmessage', (e) => {
-      if (!whitelist.includes(e.origin)) {
+      if (!this.whitelist.includes(e.origin)) {
         console.error('Origin is not included in whitelist');
         return;
       }

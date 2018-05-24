@@ -16,7 +16,7 @@ class Wedding extends Emitter {
       status: statuses.disconnected,
     });
 
-    createConnectionListener.call(this.whitelist);
+    createConnectionListener.call(this);
     initEvents.call(this);
   }
 
