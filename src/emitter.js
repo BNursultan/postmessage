@@ -12,7 +12,7 @@ class Emitter {
     if (this.isConnecter) {
       this.frame.contentWindow.postMessage(name, this.url);
     } else {
-      window.parent.postMessage(name, this.url);
+      window.parent.postMessage(name, this.origin);
     }
   }
 

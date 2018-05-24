@@ -11,6 +11,7 @@ class Wedding extends Emitter {
       isConnecter,
       url,
       whitelist,
+      origin: '',
       frame: null,
       connectionInterval: null,
       status: statuses.disconnected,

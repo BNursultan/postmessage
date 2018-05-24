@@ -33,6 +33,8 @@ export function createConnectionListener() {
         return;
       }
 
+      this.origin = e.origin;
+
       if (this.events[e.data]) {
         this.events[e.data]();
       }
@@ -43,6 +45,8 @@ export function createConnectionListener() {
         console.error('Origin is not included in whitelist');
         return;
       }
+
+      this.origin = e.origin;
 
       if (this.events[e.data]) {
         this.events[e.data]();
