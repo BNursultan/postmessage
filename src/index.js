@@ -21,9 +21,11 @@ class Wedding extends Emitter {
     initEvents.call(this);
   }
 
-  connect() {
+  connect(onStart) {
     if (this.isConnecter) {
       console.info('Initializing connection');
+
+      this.on('start', onStart);
 
       this.frame = createConnection(this.url, (frame) => {
         this.frame = frame;

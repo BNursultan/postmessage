@@ -42,7 +42,12 @@ var wedding = Wedding(options)
 `connect`    
 
 Trying to connect to iframe with provided Url. You have to exist in whitelist in connected iframe.
-   
+_arguments:_  
+
+**onStart callback**  
+Function that will be executed on start. For connecter only  
+
+
 `on`  
   
   
