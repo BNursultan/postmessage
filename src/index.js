@@ -24,18 +24,21 @@ class Wedding extends Emitter {
   connect() {
     if (this.isConnecter) {
       console.info('Initializing connection');
-      this.frame = createConnection(this.url);
 
-      if (!this.frame) {
-        console.error('Connector does not work in SSR');
-        return;
-      }
+      this.frame = createConnection(this.url, (frame) => {
+        this.frame = frame;
 
-      this.connectionInterval = setInterval(() => {
-        this.emit('connection:start');
-      }, 1000);
+        if (!this.frame) {
+          console.error('Connector does not work in SSR');
+          return;
+        }
 
-      this.status = statuses.connecting;
+        this.connectionInterval = setInterval(() => {
+          this.emit('connection:start');
+        }, 1000);
+
+        this.status = statuses.connecting;
+      });
     } else {
       console.error('This is not a connector');
     }

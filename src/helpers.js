@@ -1,6 +1,6 @@
 // Create connection function
 // creates iFrame and trying to connect inside with interval
-export function createConnection(url) {
+export function createConnection(url, callback) {
   if (typeof window === 'undefined') {
     return null;
   }
@@ -14,6 +14,11 @@ export function createConnection(url) {
       display: 'none',
     },
   });
+
+  frame.onload = () => {
+    console.info('Frame loaded');
+    callback(frame);
+  };
 
   document.body.append(frame);
   return frame;
