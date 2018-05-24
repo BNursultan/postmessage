@@ -34,7 +34,7 @@
         {
           "targets": {
             "browsers": [
-              "> 0%"
+              "IE >= 8"
             ]
           },
           "loose": true
