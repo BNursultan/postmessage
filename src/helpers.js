@@ -1,4 +1,4 @@
-const attachListener = (e) => {
+function attachListener(e) {
   if (!this.whitelist.includes(e.origin)) {
     console.error('Origin is not included in whitelist');
     return;
@@ -45,9 +45,9 @@ export function createConnectionListener() {
   }
 
   if (window.addEventListener) {
-    window.addEventListener('message', attachListener, false);
+    window.addEventListener('message', attachListener.bind(this), false);
   } else {
-    window.attachEvent('onmessage', attachListener);
+    window.attachEvent('onmessage', attachListener.bind(this));
   }
 }
 
