@@ -402,7 +402,7 @@
 /*!***********************!*\
   !*** ./src/events.js ***!
   \***********************/
-/*! no static exports found */function(e,o,s){"use strict";o.__esModule=!0,o["default"]=function(){var e=this;this.on("connection:start",function(){e.emit("connection:finished")}),this.on("connection:finished",function(){clearInterval(e.connectionInterval),e.status=n.statuses.connected,console.info("Connection established"),e.emit("start")})};var n=s(/*! ./helpers */"./src/helpers.js")},"./src/helpers.js":
+/*! no static exports found */function(e,o,s){"use strict";o.__esModule=!0,o["default"]=function(){var e=this;this.on("connection:start",function(){e.emit("connection:finished"),e.emit("start")}),this.on("connection:finished",function(){clearInterval(e.connectionInterval),e.status=n.statuses.connected,console.info("Connection established")})};var n=s(/*! ./helpers */"./src/helpers.js")},"./src/helpers.js":
 /*!************************!*\
   !*** ./src/helpers.js ***!
   \************************/

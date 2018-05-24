@@ -6,6 +6,7 @@ import { statuses } from './helpers';
 export default function initEvents() {
   this.on('connection:start', () => {
     this.emit('connection:finished');
+    this.emit('start');
   });
 
   this.on('connection:finished', () => {
@@ -13,6 +14,5 @@ export default function initEvents() {
     this.status = statuses.connected;
 
     console.info('Connection established');
-    this.emit('start');
   });
 }
