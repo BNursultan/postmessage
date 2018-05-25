@@ -11,25 +11,25 @@ function assertError(t, args) {
 }
 
 // Main
-test('Creates new instance with empty args', (t) => {
+test('Should throw errors on empty args', (t) => {
   const { message } = assertError(t);
 
   t.is(message, 'Please provide whitelist for connections');
 });
 
-test('Creates Connecter with no url args', (t) => {
+test('Should throw errors on empty url args', (t) => {
   const { message } = assertError(t, { isConnecter: true });
 
   t.is(message, 'Please provide correct url for connections');
 });
 
-test('Is not constructer instance of Wedding constructor', (t) => {
+test('Assers non constructer instance of Wedding constructor', (t) => {
   const instance = Wedding({ whitelist: WHITELIST });
 
   t.true(instance instanceof WeddingConstructor);
 });
 
-test('Is constructer instance of Wedding constructor', (t) => {
+test('Asserts constructer instance of Wedding constructor', (t) => {
   const instance = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
   t.true(instance instanceof WeddingConstructor);

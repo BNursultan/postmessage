@@ -6,7 +6,7 @@ import Wedding from '../main';
 const nonConnecter = Wedding({ whitelist: WHITELIST });
 
 // Wedding
-test('Asserts connect method on nonConnecter', (t) => {
+test('Checks connect method on nonConnecter', (t) => {
   const { message } = t.throws(() => {
     nonConnecter.connect();
   }, Error);
@@ -16,7 +16,7 @@ test('Asserts connect method on nonConnecter', (t) => {
 
 const Connecter = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
-test('Asserts connect method on Connecter', (t) => {
+test('Checks connect method on Connecter', (t) => {
   const { message } = t.throws(() => {
     Connecter.connect();
   }, Error);
