@@ -6,10 +6,13 @@ const Wedding = ({
   url = '',
   whitelist = [],
 } = {}) => {
-  // Validate before construct
-  if (!validateConstructor(isConnecter, url, whitelist)) {
+  if (typeof window === 'undefined') {
+    console.error('Connector does not work in SSR');
     return null;
   }
+
+  // Validate before construct
+  validateConstructor(isConnecter, url, whitelist);
 
   return new WeddingConstructor({ isConnecter, url, whitelist });
 };

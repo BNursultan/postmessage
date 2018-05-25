@@ -1,8 +1,6 @@
 import { statuses } from './helpers';
 
 // Default events
-
-// exported function
 export default function initEvents() {
   this.on('connection:start', () => {
     this.emit('connection:finished');

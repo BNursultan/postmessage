@@ -21,28 +21,19 @@ class Wedding extends Emitter {
     initEvents.call(this);
   }
 
-  connect(onStart) {
+  connect(onStart = null) {
     if (this.isConnecter) {
+      if (typeof onStart !== 'function') {
+        throw new Error('Please provide onStart callback');
+      }
+
       console.info('Initializing connection');
 
       this.on('start', onStart);
 
-      this.frame = createConnection(this.url, (frame) => {
-        this.frame = frame;
-
-        if (!this.frame) {
-          console.error('Connector does not work in SSR');
-          return;
-        }
-
-        this.connectionInterval = setInterval(() => {
-          this.emit('connection:start');
-        }, 1000);
-
-        this.status = statuses.connecting;
-      });
+      createConnection.call(this);
     } else {
-      console.error('This is not a connector');
+      throw new Error('This is not a connector');
     }
   }
 }
