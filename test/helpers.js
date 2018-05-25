@@ -11,3 +11,20 @@ test('Should throw error on whitelist', (t) => {
 
   t.is(message, `${origin} - is not included in whitelist`);
 });
+
+test('Assert attached event origin', (t) => {
+  const self = {
+    whitelist: WHITELIST,
+    origin: '',
+    events: {
+      event: () => true,
+    },
+  };
+
+  const origin = 'www.example.com';
+  const data = 'event';
+
+  attachListener.call(self, { origin, data });
+
+  t.is(self.origin, origin);
+});
