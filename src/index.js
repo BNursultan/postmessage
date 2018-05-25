@@ -22,19 +22,18 @@ class Wedding extends Emitter {
   }
 
   connect(onStart = null) {
-    if (this.isConnecter) {
-      if (typeof onStart !== 'function') {
-        throw new Error('Please provide onStart callback');
-      }
-
-      console.info('Initializing connection');
-
-      this.on('start', onStart);
-
-      createConnection.call(this);
-    } else {
+    if (!this.isConnecter) {
       throw new Error('This is not a connector');
     }
+
+    if (typeof onStart !== 'function') {
+      throw new Error('Please provide onStart callback');
+    }
+
+    console.info('Initializing connection');
+
+    this.on('start', onStart);
+    createConnection.call(this);
   }
 }
 
