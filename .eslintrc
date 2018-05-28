@@ -1,11 +1,8 @@
 {
-  "extends": "airbnb",
-  "parserOptions": {
-      "ecmaVersion": 6,
-      "ecmaFeatures": {
-        "experimentalObjectRestSpread": true
-      }
-    },
+  "extends": [
+    "airbnb",
+    "airbnb-flow"
+  ],
   "env": {
     "browser": true
   },

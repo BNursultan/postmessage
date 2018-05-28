@@ -1,12 +1,18 @@
+// @flow
+import type { ConstructorType, WeddingType, OnFunction } from './types';
 import Emitter from './emitter';
 import initEvents from './events';
 import { createConnection, createConnectionListener, statuses } from './helpers';
 
 class Wedding extends Emitter {
-  constructor({ isConnecter, url, whitelist }) {
+  constructor({
+    isConnecter,
+    url,
+    whitelist,
+  }: ConstructorType) {
     super();
 
-    Object.assign(this, {
+    Object.assign(this, ({
       events: Object.create(null),
       isConnecter,
       url,
@@ -15,13 +21,13 @@ class Wedding extends Emitter {
       frame: null,
       connectionInterval: null,
       status: statuses.disconnected,
-    });
+    }: WeddingType));
 
     createConnectionListener.call(this);
     initEvents.call(this);
   }
 
-  connect(onStart = null) {
+  connect(onStart: ?OnFunction = null): void {
     if (!this.isConnecter) {
       throw new Error('This is not a connector');
     }

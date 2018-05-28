@@ -2,7 +2,7 @@
 /*!*****************!*\
   !*** ./main.js ***!
   \*****************/
-/*! no static exports found */function(e,o,s){"use strict";o.__esModule=!0;var n,r=s(/*! ./src/index */"./src/index.js"),t=(n=r)&&n.__esModule?n:{"default":n},u=s(/*! ./src/helpers */"./src/helpers.js");o["default"]=function(){var e=arguments.length>0&&arguments[0]!==undefined?arguments[0]:{},o=e.isConnecter,s=o!==undefined&&o,n=e.url,r=n===undefined?"":n,d=e.whitelist,c=d===undefined?[]:d;return"undefined"==typeof window?(console.error("Connector does not work in SSR"),null):((0,u.validateConstructor)(s,r,c),new t["default"]({isConnecter:s,url:r,whitelist:c}))}},"./node_modules/core-js/es5/index.js":
+/*! no static exports found */function(e,o,s){"use strict";o.__esModule=!0;var n,r=s(/*! ./src/index */"./src/index.js"),t=(n=r)&&n.__esModule?n:{"default":n},u=s(/*! ./src/helpers */"./src/helpers.js");o["default"]=function(e){var o=e.isConnecter,s=o!==undefined&&o,n=e.url,r=n===undefined?"":n,d=e.whitelist,c=d===undefined?[]:d;return"undefined"==typeof window?(console.error("Connector does not work in SSR"),null):((0,u.validateConstructor)(s,r,c),new t["default"]({isConnecter:s,url:r,whitelist:c}))}},"./node_modules/core-js/es5/index.js":
 /*!*******************************************!*\
   !*** ./node_modules/core-js/es5/index.js ***!
   \*******************************************/

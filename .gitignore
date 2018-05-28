@@ -2,3 +2,4 @@ node_modules
 entry.html
 .nyc_output
 coverage
+flow-coverage
