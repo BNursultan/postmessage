@@ -1,5 +1,14 @@
-class Emitter {
-  on(name, fn) {
+// @flow
+import type { OnFunction, Events } from './types';
+
+export default class Emitter {
+  events: Events | any;
+  isConnecter: boolean;
+  url: string;
+  origin: string;
+  frame: any;
+
+  on(name: string, fn: OnFunction): void {
     if (this.events[name]) {
       throw new Error(`${name} - event listner already exists`);
     }
@@ -7,7 +16,7 @@ class Emitter {
     this.events = Object.assign(this.events, { [name]: fn });
   }
 
-  emit(name) {
+  emit(name: string): void {
     try {
       if (this.isConnecter) {
         this.frame.contentWindow.postMessage(name, this.url);
@@ -19,7 +28,7 @@ class Emitter {
     }
   }
 
-  off(name) {
+  off(name: string): void {
     if (!this.events[name]) {
       throw new Error(`${name} - event listner does not exists`);
     }
@@ -27,5 +36,3 @@ class Emitter {
     this.events = Object.assign({}, { [name]: undefined });
   }
 }
-
-export default Emitter;

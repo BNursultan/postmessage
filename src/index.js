@@ -1,18 +1,21 @@
 // @flow
-import type { ConstructorType, WeddingType, OnFunction } from './types';
+import type { ArgsType, WeddingType, Events, Status, OnFunction } from './types';
 import Emitter from './emitter';
-import initEvents from './events';
-import { createConnection, createConnectionListener, statuses } from './helpers';
+import { createConnection, createConnectionListener, statuses, initEvents } from './helpers';
 
-class Wedding extends Emitter {
+export default class Wedding extends Emitter {
+  whitelist: Array<string>;
+  connectionInterval: any;
+  status: Status;
+
   constructor({
     isConnecter,
     url,
-    whitelist,
-  }: ConstructorType) {
+    whitelist
+  }: ArgsType): void {
     super();
 
-    Object.assign(this, ({
+    Object.assign(this, {
       events: Object.create(null),
       isConnecter,
       url,
@@ -21,7 +24,7 @@ class Wedding extends Emitter {
       frame: null,
       connectionInterval: null,
       status: statuses.disconnected,
-    }: WeddingType));
+    });
 
     createConnectionListener.call(this);
     initEvents.call(this);
@@ -42,5 +45,3 @@ class Wedding extends Emitter {
     createConnection.call(this);
   }
 }
-
-export default Wedding;

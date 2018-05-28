@@ -11,7 +11,8 @@
     "test": "nyc --reporter=html --reporter=text ava -v",
     "watch": "nyc --reporter=html --reporter=text ava --watch -v",
     "flow": "flow",
-    "coverage": "flow-coverage-report -i 'main.js' -i 'src/*.js' -t html --threshold 90"
+    "coverage": "flow-coverage-report -i 'main.js' -i 'src/*.js' -t html --threshold 90",
+    "precommit": "npm run test"
   },
   "dependencies": {
     "core-js": "^2.5.6"
@@ -21,6 +22,7 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
@@ -35,6 +37,7 @@
     "flow-bin": "^0.73.0",
     "flow-coverage-report": "^0.5.0",
     "flow-remove-types": "^1.2.3",
+    "husky": "^0.14.3",
     "nyc": "^11.8.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.8.3",
@@ -56,7 +59,8 @@
       "flow"
     ],
     "plugins": [
-      "transform-object-assign"
+      "transform-object-assign",
+      "transform-flow-strip-types"
     ]
   },
   "ava": {

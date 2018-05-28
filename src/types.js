@@ -1,9 +1,18 @@
+// @flow
+export type ArgsType = {
+  isConnecter: boolean,
+  url: string,
+  whitelist: Array<string>,
+};
+
 export type Status = 'disconnected' | 'connecting' | 'connected';
 
+export type Events = {
+  [key: string]: OnFunction
+};
+
 export type WeddingType = {
-  events: {
-    [key: string]: OnFunction
-  },
+  events: Events | any,
   isConnecter: boolean,
   url: string,
   whitelist: Array<string>,
@@ -11,12 +20,7 @@ export type WeddingType = {
   frame: any,
   connectionInterval: any,
   status: Status,
-}
-
-export type ConstructorType = {
-  isConnecter: boolean,
-  url: string,
-  whitelist: Array<string>,
-}
+};
 
 export type OnFunction = (any) => any;
+

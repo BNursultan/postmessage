@@ -1,13 +1,13 @@
 // @flow
-import WeddingConstructor from './src/index';
-import type { WeddingType, ConstructorType } from './src/types';
+import type { WeddingType, ArgsType } from './src/types';
+import Wedding from './src/index';
 import { validateConstructor } from './src/helpers';
 
-const Wedding = ({
+export default ({
   isConnecter = false,
   url = '',
-  whitelist = [],
-}: ConstructorType): ?WeddingType => {
+  whitelist = []
+}: ArgsType = {}): ?WeddingType => {
   if (typeof window === 'undefined') {
     console.error('Connector does not work in SSR');
     return null;
@@ -16,7 +16,5 @@ const Wedding = ({
   // Validate before construct
   validateConstructor(isConnecter, url, whitelist);
 
-  return new WeddingConstructor({ isConnecter, url, whitelist });
+  return new Wedding({ isConnecter, url, whitelist });
 };
-
-export default Wedding;

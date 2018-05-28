@@ -67,3 +67,18 @@ export function validateConstructor(isConnecter, url, whitelist) {
     throw new Error('Please provide whitelist for connections');
   }
 }
+
+// Default events
+export function initEvents() {
+  this.on('connection:start', () => {
+    this.emit('connection:finished');
+    this.emit('start');
+  });
+
+  this.on('connection:finished', () => {
+    clearInterval(this.connectionInterval);
+    this.status = statuses.connected;
+
+    console.info('Connection established');
+  });
+}
