@@ -4,15 +4,15 @@ export const statuses = {
   connected: 'connected',
 };
 
-export function attachListener(e) {
-  if (!this.whitelist.includes(e.origin)) {
-    throw new Error(`${e.origin} - is not included in whitelist`);
+export function attachListener({ origin, data }) {
+  if (!this.whitelist.includes(origin)) {
+    throw new Error(`${origin} - is not included in whitelist`);
   }
 
-  this.origin = e.origin;
+  this.origin = origin;
 
-  if (this.events[e.data]) {
-    this.events[e.data]();
+  if (this.events[data]) {
+    this.events[data]();
   }
 }
 

@@ -42,3 +42,13 @@ test('Should throw error emitting default events', (t) => {
 
   t.true(typeof message === 'string');
 });
+
+const nonConnecter = Wedding({ whitelist: WHITELIST });
+
+test('Should throw error emitting default events from non connector', (t) => {
+  const { message } = t.throws(() => {
+    nonConnecter.emit('connection:start');
+  }, Error);
+
+  t.true(typeof message === 'string');
+});
