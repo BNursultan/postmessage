@@ -75,6 +75,6 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://nexus3.alfa-bank.kz/repository/npm/"
+    "registry": "https://nexus3.alfa-bank.kz/repository/npm-local/"
   }
 }
