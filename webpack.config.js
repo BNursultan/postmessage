@@ -43,28 +43,6 @@ const webpackUmdConfig = merge({}, webpackConfig,
   : {}
 )
 
-const webpackEsConfig = merge({}, webpackConfig, {
-  mode: 'development',
-  entry: {
-    'wedding.es': ['./main.js']
-  },
-  output: {
-    filename: 'wedding.amd.js',
-    path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'amd',
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-    ],
-  },
-})
-
 module.exports = [
-  webpackUmdConfig,
-  webpackEsConfig
+  webpackUmdConfig
 ];

@@ -6,7 +6,7 @@ import { validateConstructor } from './src/helpers';
 export default ({
   isConnecter = false,
   url = '',
-  whitelist = []
+  whitelist = [],
 }: ArgsType = {}): ?WeddingType => {
   if (typeof window === 'undefined') {
     console.error('Connector does not work in SSR');

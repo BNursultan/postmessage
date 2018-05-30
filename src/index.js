@@ -1,5 +1,5 @@
 // @flow
-import type { ArgsType, WeddingType, Events, Status, OnFunction } from './types';
+import type { ArgsType, Status, OnFunction } from './types';
 import Emitter from './emitter';
 import { createConnection, createConnectionListener, statuses, initEvents } from './helpers';
 
@@ -11,7 +11,7 @@ export default class Wedding extends Emitter {
   constructor({
     isConnecter,
     url,
-    whitelist
+    whitelist,
   }: ArgsType): void {
     super();
 

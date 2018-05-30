@@ -1,7 +1,6 @@
 {
   "extends": [
-    "airbnb",
-    "airbnb-flow"
+    "airbnb"
   ],
   "env": {
     "browser": true

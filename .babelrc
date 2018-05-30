@@ -1,0 +1,20 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "IE >= 8"
+          ]
+        },
+        "loose": true
+      }
+    ],
+    "flow"
+  ],
+  "plugins": [
+    "transform-object-assign",
+    "transform-flow-strip-types"
+  ]
+}

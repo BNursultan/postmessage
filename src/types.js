@@ -7,8 +7,10 @@ export type ArgsType = {
 
 export type Status = 'disconnected' | 'connecting' | 'connected';
 
+export type OnFunction = (any) => any;
+
 export type Events = {
-  [key: string]: OnFunction
+  [key: string]: OnFunction,
 };
 
 export type WeddingType = {
@@ -21,6 +23,3 @@ export type WeddingType = {
   connectionInterval: any,
   status: Status,
 };
-
-export type OnFunction = (any) => any;
-
