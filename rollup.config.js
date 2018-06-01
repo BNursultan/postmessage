@@ -26,9 +26,11 @@ export default {
         'flow',
       ],
       plugins: [
+        'external-helpers',
         'transform-object-assign',
         'transform-flow-strip-types',
       ],
+      externalHelpers: true,
     }),
   ],
 };

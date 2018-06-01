@@ -1,20 +1,16 @@
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 var Emitter = function () {
   function Emitter() {
-    _classCallCheck(this, Emitter);
+    babelHelpers.classCallCheck(this, Emitter);
   }
 
   Emitter.prototype.on = function on(name, fn) {
-    var _extends2;
+    var _babelHelpers$extends;
 
     if (this.events[name]) {
       throw new Error(name + ' - event listner already exists');
     }
 
-    this.events = _extends(this.events, (_extends2 = {}, _extends2[name] = fn, _extends2));
+    this.events = babelHelpers.extends(this.events, (_babelHelpers$extends = {}, _babelHelpers$extends[name] = fn, _babelHelpers$extends));
   };
 
   Emitter.prototype.emit = function emit(name) {
@@ -24,25 +20,27 @@ var Emitter = function () {
       } else {
         window.parent.postMessage(name, this.origin);
       }
+
+      if (this.log) {
+        console.info(name + ' - event is emitted');
+      }
     } catch (e) {
       throw new Error(e + ' - Postmessage error on emit');
     }
   };
 
   Emitter.prototype.off = function off(name) {
-    var _extends3;
+    var _babelHelpers$extends2;
 
     if (!this.events[name]) {
       throw new Error(name + ' - event listner does not exists');
     }
 
-    this.events = _extends({}, (_extends3 = {}, _extends3[name] = undefined, _extends3));
+    this.events = babelHelpers.extends({}, (_babelHelpers$extends2 = {}, _babelHelpers$extends2[name] = undefined, _babelHelpers$extends2));
   };
 
   return Emitter;
 }();
-
-var _extends$1 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var statuses = {
   disconnected: 'disconnected',
@@ -72,7 +70,7 @@ function createConnection() {
 
   var frame = document.createElement('iframe');
 
-  _extends$1(frame, {
+  babelHelpers.extends(frame, {
     name: 'theFionce',
     src: this.url
   });
@@ -147,31 +145,24 @@ function initEvents() {
   });
 }
 
-var _extends$2 = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-function _classCallCheck$1(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 var Wedding = function (_Emitter) {
-  _inherits(Wedding, _Emitter);
+  babelHelpers.inherits(Wedding, _Emitter);
 
   function Wedding(_ref) {
     var isConnecter = _ref.isConnecter,
         url = _ref.url,
-        whitelist = _ref.whitelist;
+        whitelist = _ref.whitelist,
+        log = _ref.log;
+    babelHelpers.classCallCheck(this, Wedding);
 
-    _classCallCheck$1(this, Wedding);
+    var _this = babelHelpers.possibleConstructorReturn(this, _Emitter.call(this));
 
-    var _this = _possibleConstructorReturn(this, _Emitter.call(this));
-
-    _extends$2(_this, {
-      events: Object.create(null),
+    babelHelpers.extends(_this, {
       isConnecter: isConnecter,
       url: url,
       whitelist: whitelist,
+      log: log,
+      events: Object.create(null),
       origin: '',
       frame: null,
       connectionInterval: null,
@@ -206,7 +197,9 @@ var main = (function () {
       _ref$url = _ref.url,
       url = _ref$url === undefined ? '' : _ref$url,
       _ref$whitelist = _ref.whitelist,
-      whitelist = _ref$whitelist === undefined ? [] : _ref$whitelist;
+      whitelist = _ref$whitelist === undefined ? [] : _ref$whitelist,
+      _ref$log = _ref.log,
+      log = _ref$log === undefined ? false : _ref$log;
 
   if (typeof window === 'undefined') {
     console.error('Connector does not work in SSR');
@@ -216,7 +209,12 @@ var main = (function () {
   // Validate before construct
   validateConstructor(isConnecter, url, whitelist);
 
-  return new Wedding({ isConnecter: isConnecter, url: url, whitelist: whitelist });
+  return new Wedding({
+    isConnecter: isConnecter,
+    url: url,
+    whitelist: whitelist,
+    log: log
+  });
 });
 
 export default main;
