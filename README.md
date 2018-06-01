@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/BNursultan/postmessage.svg?branch=master)](https://travis-ci.org/BNursultan/postmessage)
+[![Coverage Status](https://coveralls.io/repos/github/BNursultan/postmessage/badge.svg)](https://coveralls.io/github/BNursultan/postmessage)  
+  
+
 # Postmessage Library
 Two way iframe communication library  
   
