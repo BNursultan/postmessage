@@ -116,6 +116,18 @@ function validateConstructor(isConnecter, url, whitelist) {
   if (whitelist.length === 0) {
     throw new Error('Please provide whitelist for connections');
   }
+
+  if (typeof isConnecter !== 'boolean') {
+    throw new Error('isConnecter - argument should be a boolean');
+  }
+
+  if (typeof url !== 'string') {
+    throw new Error('url - argument should be a string');
+  }
+
+  if (!Array.isArray(whitelist)) {
+    throw new Error('whitelist - argument should be an array of url strings');
+  }
 }
 
 // Default events
