@@ -18,9 +18,9 @@ const webpackUmdConfig = merge(
       'postmessage.umd': ['core-js/es5', './main.js'],
     },
     output: {
-      filename: 'wedding.umd.js',
+      filename: 'postmessage.umd.js',
       path: path.resolve(__dirname, 'dist'),
-      library: 'Wedding',
+      library: 'Postmessage',
       libraryExport: 'default',
       libraryTarget: 'umd',
     },

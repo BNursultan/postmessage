@@ -13,7 +13,7 @@
     "test": "nyc --reporter=lcov --reporter=text-lcov ava -v",
     "test:watch": "nyc --reporter=html --reporter=text ava --watch -v",
     "flow": "flow",
-    "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "precommit": "npm run test"
   },
   "dependencies": {
