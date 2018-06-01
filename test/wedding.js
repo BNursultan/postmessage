@@ -16,14 +16,6 @@ test('Checks connect method on nonConnecter', (t) => {
 
 const Connecter = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
-test('Checks connect method on Connecter', (t) => {
-  const { message } = t.throws(() => {
-    Connecter.connect();
-  }, Error);
-
-  t.is(message, 'Please provide onStart callback');
-});
-
 test('Should create a frame', (t) => {
   Connecter.connect(onStart);
 

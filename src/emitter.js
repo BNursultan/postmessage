@@ -8,7 +8,7 @@ export default class Emitter {
   origin: string;
   frame: any;
 
-  on(name: string, fn: OnFunction): void {
+  on(name: string, fn: ?OnFunction): void {
     if (this.events[name]) {
       throw new Error(`${name} - event listner already exists`);
     }

@@ -30,13 +30,9 @@ export default class Wedding extends Emitter {
     initEvents.call(this);
   }
 
-  connect(onStart: ?OnFunction = null): void {
+  connect(onStart: ?OnFunction = (() => {})): void {
     if (!this.isConnecter) {
       throw new Error('This is not a connector');
-    }
-
-    if (typeof onStart !== 'function') {
-      throw new Error('Please provide onStart callback');
     }
 
     console.info('Initializing connection');

@@ -24,10 +24,9 @@ export function createConnection() {
   Object.assign(frame, {
     name: 'theFionce',
     src: this.url,
-    style: {
-      display: 'none',
-    },
   });
+
+  frame.style.display = 'none';
 
   document.body.append(frame);
   const frameDoc = frame.contentDocument || frame.contentWindow.document;

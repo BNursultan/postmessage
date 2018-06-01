@@ -74,11 +74,10 @@ function createConnection() {
 
   _extends$1(frame, {
     name: 'theFionce',
-    src: this.url,
-    style: {
-      display: 'none'
-    }
+    src: this.url
   });
+
+  frame.style.display = 'none';
 
   document.body.append(frame);
   var frameDoc = frame.contentDocument || frame.contentWindow.document;
@@ -173,14 +172,10 @@ var Wedding = function (_Emitter) {
   }
 
   Wedding.prototype.connect = function connect() {
-    var onStart = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
+    var onStart = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
     if (!this.isConnecter) {
       throw new Error('This is not a connector');
-    }
-
-    if (typeof onStart !== 'function') {
-      throw new Error('Please provide onStart callback');
     }
 
     console.info('Initializing connection');
