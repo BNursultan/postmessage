@@ -10,10 +10,10 @@
     "build": "npm run build:umd && npm run build:esm",
     "build:umd": "NODE_ENV=production webpack --config webpack.config.js",
     "build:esm": "rollup -c rollup.config.js",
-    "test": "nyc --reporter=html --reporter=text ava -v",
-    "watch": "nyc --reporter=html --reporter=text ava --watch -v",
+    "test": "nyc --reporter=lcov --reporter=text-lcov ava -v",
+    "test:watch": "nyc --reporter=html --reporter=text ava --watch -v",
     "flow": "flow",
-    "coverage": "flow-coverage-report -i 'main.js' -i 'src/*.js' -t html --threshold 90",
+    "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls",
     "precommit": "npm run test"
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "babel-preset-env": "1.7.0",
     "babel-preset-flow": "6.23.0",
     "browser-env": "3.2.5",
+    "coveralls": "^3.0.1",
     "eslint": "4.19.1",
     "eslint-config-airbnb": "16.1.0",
     "eslint-plugin-import": "2.12.0",
