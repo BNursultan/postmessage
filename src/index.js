@@ -3,7 +3,7 @@ import type { ArgsType, Status, OnFunction } from './types';
 import Emitter from './emitter';
 import { createConnection, createConnectionListener, statuses, initEvents } from './helpers';
 
-export default class Wedding extends Emitter {
+export default class Postmessage extends Emitter {
   whitelist: Array<string>;
   connectionInterval: any;
   status: Status;

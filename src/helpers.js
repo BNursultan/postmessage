@@ -22,7 +22,7 @@ export function createConnection() {
   const frame = document.createElement('iframe');
 
   Object.assign(frame, {
-    name: 'theFionce',
+    name: 'theFrame',
     src: this.url,
   });
 

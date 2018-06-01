@@ -1,25 +1,22 @@
-# Wedding Library
-    
+# Postmessage Library
+Two way iframe communication library  
+  
 
 ### Install and usage  
     
 
 
-```
-npm install -S alfa-wedding
-```  
-
 _as es6 module:_  
 ```
-import Wedding from 'alfa-wedding';
-// use Wedding constructor
+import Postmessage from 'postmessage/dist/postmessage.esm.js';
+// use Postmessage constructor
 ```  
   
 _in browser:_  
 ```
-<script src="path/to/wedding.umd.js";
-// now Wedding constructor exists in global  
-// use Wedding constructor  
+<script src="path/to/postmessage.umd.js";
+// now Postmessage constructor exists in global  
+// use Postmessage constructor  
 ```  
 
   
@@ -28,11 +25,11 @@ _in browser:_
 
   
 You can be either `connecter` or not. Connecter creates iframe and trying to connect to it every second.  
-You have to create global variable to initialize Wedding.  
+You have to create global variable to initialize Postmessage.  
   
 ```
 // Have to initialize
-var wedding = Wedding(options)
+var post = Postmessage(options)
 ```  
   
 ### Methods    

@@ -14,7 +14,7 @@ export type Events = {
   [key: string]: OnFunction,
 };
 
-export type WeddingType = {
+export type PostmessageType = {
   events: Events | any,
   isConnecter: boolean,
   url: string,

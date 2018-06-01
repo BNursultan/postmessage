@@ -1,9 +1,9 @@
 import test from 'ava';
 import './helpers/browser';
 import { onStart, WHITELIST, URL } from './helpers/fixtures';
-import Wedding from '../main';
+import Postmessage from '../main';
 
-const Connecter = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
+const Connecter = Postmessage({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
 test('Should throw error on same event', (t) => {
   const duplicateEvent = 'event:duplicate';
@@ -43,7 +43,7 @@ test('Should throw error emitting default events', (t) => {
   t.true(typeof message === 'string');
 });
 
-const nonConnecter = Wedding({ whitelist: WHITELIST });
+const nonConnecter = Postmessage({ whitelist: WHITELIST });
 
 test('Should throw error emitting default events from non connector', (t) => {
   const { message } = t.throws(() => {

@@ -4,7 +4,7 @@ export default {
   input: 'main.js',
   output: {
     format: 'es',
-    file: './dist/wedding.esm.js',
+    file: './dist/postmessage.esm.js',
   },
   plugins: [
     babel({
@@ -30,7 +30,6 @@ export default {
         'transform-object-assign',
         'transform-flow-strip-types',
       ],
-      externalHelpers: true,
     }),
   ],
 };

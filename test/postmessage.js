@@ -1,11 +1,11 @@
 import test from 'ava';
 import './helpers/browser';
 import { onStart, URL, WHITELIST } from './helpers/fixtures';
-import Wedding from '../main';
+import Postmessage from '../main';
 
-const nonConnecter = Wedding({ whitelist: WHITELIST });
+const nonConnecter = Postmessage({ whitelist: WHITELIST });
 
-// Wedding
+// Postmessage
 test('Checks connect method on nonConnecter', (t) => {
   const { message } = t.throws(() => {
     nonConnecter.connect();
@@ -14,7 +14,7 @@ test('Checks connect method on nonConnecter', (t) => {
   t.is(message, 'This is not a connector');
 });
 
-const Connecter = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
+const Connecter = Postmessage({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
 test('Should create a frame', (t) => {
   Connecter.connect(onStart);

@@ -3,3 +3,4 @@ entry.html
 .nyc_output
 coverage
 flow-coverage
+.npmrc

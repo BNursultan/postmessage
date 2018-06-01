@@ -7,11 +7,15 @@ const webpackConfig = {
   plugins: [],
 };
 
-const webpackUmdConfig = merge({}, webpackConfig, 
+// We have to support IE8 in webpack 4
+// TODO: better build configurations
+const webpackUmdConfig = merge(
+  {},
+  webpackConfig,
   {
     mode: 'development',
     entry: {
-      'wedding.umd': ['core-js/es5', './main.js']
+      'postmessage.umd': ['core-js/es5', './main.js'],
     },
     output: {
       filename: 'wedding.umd.js',
@@ -29,20 +33,20 @@ const webpackUmdConfig = merge({}, webpackConfig,
         },
       ],
     },
-  }, 
-  process.env.NODE_ENV === 'production' 
-  ? {
-    plugins: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          ie8: true,
-        },
-      })
-    ]
-  }
-  : {}
-)
+  },
+  process.env.NODE_ENV === 'production'
+    ? {
+      plugins: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            ie8: true,
+          },
+        }),
+      ],
+    }
+    : {},
+);
 
 module.exports = [
-  webpackUmdConfig
+  webpackUmdConfig,
 ];

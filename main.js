@@ -1,6 +1,6 @@
 // @flow
-import type { WeddingType, ArgsType } from './src/types';
-import Wedding from './src/index';
+import type { PostmessageType, ArgsType } from './src/types';
+import Postmessage from './src/index';
 import { validateConstructor } from './src/helpers';
 
 export default ({
@@ -8,7 +8,7 @@ export default ({
   url = '',
   whitelist = [],
   log = false,
-}: ArgsType = {}): ?WeddingType => {
+}: ArgsType = {}): ?PostmessageType => {
   if (typeof window === 'undefined') {
     console.error('Connector does not work in SSR');
     return null;
@@ -17,7 +17,7 @@ export default ({
   // Validate before construct
   validateConstructor(isConnecter, url, whitelist);
 
-  return new Wedding({
+  return new Postmessage({
     isConnecter,
     url,
     whitelist,

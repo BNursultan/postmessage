@@ -1,6 +1,50 @@
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
 var Emitter = function () {
   function Emitter() {
-    babelHelpers.classCallCheck(this, Emitter);
+    classCallCheck(this, Emitter);
   }
 
   Emitter.prototype.on = function on(name, fn) {
@@ -10,7 +54,7 @@ var Emitter = function () {
       throw new Error(name + ' - event listner already exists');
     }
 
-    this.events = babelHelpers.extends(this.events, (_babelHelpers$extends = {}, _babelHelpers$extends[name] = fn, _babelHelpers$extends));
+    this.events = _extends(this.events, (_babelHelpers$extends = {}, _babelHelpers$extends[name] = fn, _babelHelpers$extends));
   };
 
   Emitter.prototype.emit = function emit(name) {
@@ -36,7 +80,7 @@ var Emitter = function () {
       throw new Error(name + ' - event listner does not exists');
     }
 
-    this.events = babelHelpers.extends({}, (_babelHelpers$extends2 = {}, _babelHelpers$extends2[name] = undefined, _babelHelpers$extends2));
+    this.events = _extends({}, (_babelHelpers$extends2 = {}, _babelHelpers$extends2[name] = undefined, _babelHelpers$extends2));
   };
 
   return Emitter;
@@ -70,8 +114,8 @@ function createConnection() {
 
   var frame = document.createElement('iframe');
 
-  babelHelpers.extends(frame, {
-    name: 'theFionce',
+  _extends(frame, {
+    name: 'theFrame',
     src: this.url
   });
 
@@ -145,19 +189,19 @@ function initEvents() {
   });
 }
 
-var Wedding = function (_Emitter) {
-  babelHelpers.inherits(Wedding, _Emitter);
+var Postmessage = function (_Emitter) {
+  inherits(Postmessage, _Emitter);
 
-  function Wedding(_ref) {
+  function Postmessage(_ref) {
     var isConnecter = _ref.isConnecter,
         url = _ref.url,
         whitelist = _ref.whitelist,
         log = _ref.log;
-    babelHelpers.classCallCheck(this, Wedding);
+    classCallCheck(this, Postmessage);
 
-    var _this = babelHelpers.possibleConstructorReturn(this, _Emitter.call(this));
+    var _this = possibleConstructorReturn(this, _Emitter.call(this));
 
-    babelHelpers.extends(_this, {
+    _extends(_this, {
       isConnecter: isConnecter,
       url: url,
       whitelist: whitelist,
@@ -174,7 +218,7 @@ var Wedding = function (_Emitter) {
     return _this;
   }
 
-  Wedding.prototype.connect = function connect() {
+  Postmessage.prototype.connect = function connect() {
     var onStart = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : function () {};
 
     if (!this.isConnecter) {
@@ -187,7 +231,7 @@ var Wedding = function (_Emitter) {
     createConnection.call(this);
   };
 
-  return Wedding;
+  return Postmessage;
 }(Emitter);
 
 var main = (function () {
@@ -209,7 +253,7 @@ var main = (function () {
   // Validate before construct
   validateConstructor(isConnecter, url, whitelist);
 
-  return new Wedding({
+  return new Postmessage({
     isConnecter: isConnecter,
     url: url,
     whitelist: whitelist,

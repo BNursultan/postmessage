@@ -1,16 +1,17 @@
 import test from 'ava';
 import './helpers/browser';
 import { URL, WHITELIST } from './helpers/fixtures';
-import Wedding from '../main';
-import WeddingConstructor from '../src/index';
+import Postmessage from '../main';
+import PostmessageConstructor from '../src/index';
 
 function assertError(t, args) {
   return t.throws(() => {
-    Wedding(args);
+    Postmessage(args);
   }, Error);
 }
 
 // Main
+// TODO: do better tests
 test('Should throw errors on empty args', (t) => {
   const { message } = assertError(t);
 
@@ -23,14 +24,14 @@ test('Should throw errors on empty url args', (t) => {
   t.is(message, 'Please provide correct url for connections');
 });
 
-test('Assers non constructer instance of Wedding constructor', (t) => {
-  const instance = Wedding({ whitelist: WHITELIST });
+test('Assers non constructer instance of Postmessage constructor', (t) => {
+  const instance = Postmessage({ whitelist: WHITELIST });
 
-  t.true(instance instanceof WeddingConstructor);
+  t.true(instance instanceof PostmessageConstructor);
 });
 
-test('Asserts constructer instance of Wedding constructor', (t) => {
-  const instance = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
+test('Asserts constructer instance of Postmessage constructor', (t) => {
+  const instance = Postmessage({ isConnecter: true, url: URL, whitelist: WHITELIST });
 
-  t.true(instance instanceof WeddingConstructor);
+  t.true(instance instanceof PostmessageConstructor);
 });

@@ -1,9 +1,9 @@
 import test from 'ava';
 import './helpers/browser';
 import { onStart, WHITELIST, URL } from './helpers/fixtures';
-import Wedding from '../main';
+import Postmessage from '../main';
 
-const Connecter = Wedding({ isConnecter: true, url: URL, whitelist: WHITELIST });
+const Connecter = Postmessage({ isConnecter: true, url: URL, whitelist: WHITELIST });
 Connecter.connect(onStart);
 
 test('Assert connection interval on start', (t) => {
