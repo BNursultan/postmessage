@@ -1,6 +1,7 @@
 import test from 'ava';
 import './helpers/browser';
-import { WHITELIST } from './helpers/fixtures';
+import Wedding from '../main';
+import { WHITELIST, URL } from './helpers/fixtures';
 import { attachListener } from '../src/helpers';
 
 test('Should throw error on whitelist', (t) => {
@@ -10,6 +11,30 @@ test('Should throw error on whitelist', (t) => {
   }, Error);
 
   t.is(message, `${origin} - is not included in whitelist`);
+});
+
+test('Should throw error on wrong isConnecter argument', (t) => {
+  const { message } = t.throws(() => {
+    Wedding({ isConnecter: 'some', url: URL, whitelist: WHITELIST });
+  }, Error);
+
+  t.is(message, 'isConnecter - argument should be a boolean');
+});
+
+test('Should throw error on wrong url argument', (t) => {
+  const { message } = t.throws(() => {
+    Wedding({ isConnecter: true, url: true, whitelist: WHITELIST });
+  }, Error);
+
+  t.is(message, 'url - argument should be a string');
+});
+
+test('Should throw error on wrong whitelist argument', (t) => {
+  const { message } = t.throws(() => {
+    Wedding({ isConnecter: true, url: URL, whitelist: false });
+  }, Error);
+
+  t.is(message, 'whitelist - argument should be an array of url strings');
 });
 
 test('Assert attached event origin', (t) => {
