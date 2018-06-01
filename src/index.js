@@ -12,14 +12,16 @@ export default class Wedding extends Emitter {
     isConnecter,
     url,
     whitelist,
+    log,
   }: ArgsType): void {
     super();
 
     Object.assign(this, {
-      events: Object.create(null),
       isConnecter,
       url,
       whitelist,
+      log,
+      events: Object.create(null),
       origin: '',
       frame: null,
       connectionInterval: null,

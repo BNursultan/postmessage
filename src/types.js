@@ -3,6 +3,7 @@ export type ArgsType = {
   isConnecter: boolean,
   url: string,
   whitelist: Array<string>,
+  log: boolean,
 };
 
 export type Status = 'disconnected' | 'connecting' | 'connected';

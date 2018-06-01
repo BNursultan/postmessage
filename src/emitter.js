@@ -7,6 +7,7 @@ export default class Emitter {
   url: string;
   origin: string;
   frame: any;
+  log: boolean;
 
   on(name: string, fn: ?OnFunction): void {
     if (this.events[name]) {
@@ -22,6 +23,10 @@ export default class Emitter {
         this.frame.contentWindow.postMessage(name, this.url);
       } else {
         window.parent.postMessage(name, this.origin);
+      }
+
+      if (this.log) {
+        console.info(`${name} - event is emitted`);
       }
     } catch (e) {
       throw new Error(`${e} - Postmessage error on emit`);

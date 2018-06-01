@@ -7,6 +7,7 @@ export default ({
   isConnecter = false,
   url = '',
   whitelist = [],
+  log = false,
 }: ArgsType = {}): ?WeddingType => {
   if (typeof window === 'undefined') {
     console.error('Connector does not work in SSR');
@@ -16,5 +17,10 @@ export default ({
   // Validate before construct
   validateConstructor(isConnecter, url, whitelist);
 
-  return new Wedding({ isConnecter, url, whitelist });
+  return new Wedding({
+    isConnecter,
+    url,
+    whitelist,
+    log,
+  });
 };
