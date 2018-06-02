@@ -4,7 +4,7 @@
   "description": "Two way iframe communication library",
   "author": "Nursultan Berkimbay",
   "license": "MIT",
-  "main": "main.js",
+  "main": "dist/postmessage.esm.js",
   "scripts": {
     "dev": "NODE_ENV=development webpack --watch --config webpack.config.js",
     "build": "npm run build:umd && npm run build:esm",
