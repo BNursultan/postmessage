@@ -27,22 +27,17 @@ export function createConnection() {
   frame.src = this.url;
 
   document.body.append(frame);
-  const frameDoc = frame.contentDocument || frame.contentWindow.document;
 
-  if (frameDoc.readyState === 'complete') {
+  this.status = statuses.connecting;
+  this.frame = frame;
+
+  frame.onload = () => {
     console.info('Frame loaded');
-
-    this.frame = frame;
 
     this.connectionInterval = setInterval(() => {
       this.emit('connection:start');
     }, 1000);
-
-    this.status = statuses.connecting;
-    return;
-  }
-
-  setTimeout(createConnection.bind(this), 500);
+  };
 }
 
 // Create connection listner on window
