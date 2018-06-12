@@ -1,3 +1,99 @@
+var FRAME_NAME = 'theFionce';
+
+var statuses = {
+  disconnected: 'disconnected',
+  connecting: 'connecting',
+  connected: 'connected'
+};
+
+function attachListener(_ref) {
+  var origin = _ref.origin,
+      data = _ref.data;
+
+  if (!this.whitelist.includes(origin)) {
+    throw new Error(origin + ' - is not included in whitelist');
+  }
+
+  this.origin = origin;
+
+  if (this.events[data]) {
+    this.events[data]();
+  }
+}
+
+// Create connection function
+// creates iFrame and trying to connect inside with interval
+function createConnection() {
+  var _this = this;
+
+  var frame = document.createElement('iframe');
+  frame.style.display = 'none';
+  frame.name = FRAME_NAME;
+  frame.src = this.url;
+
+  document.body.append(frame);
+
+  this.status = statuses.connecting;
+  this.frame = frame;
+
+  frame.onload = function () {
+    console.info('Frame loaded');
+
+    _this.connectionInterval = setInterval(function () {
+      _this.emit('connection:start');
+    }, 1000);
+  };
+}
+
+// Create connection listner on window
+function createConnectionListener() {
+  if (window.addEventListener) {
+    window.addEventListener('message', attachListener.bind(this), false);
+  } else {
+    window.attachEvent('onmessage', attachListener.bind(this));
+  }
+}
+
+// Validations
+function validateConstructor(isConnecter, url, whitelist) {
+  if (isConnecter && url === '') {
+    throw new Error('Please provide correct url for connections');
+  }
+
+  if (whitelist.length === 0) {
+    throw new Error('Please provide whitelist for connections');
+  }
+
+  if (typeof isConnecter !== 'boolean') {
+    throw new Error('isConnecter - argument should be a boolean');
+  }
+
+  if (typeof url !== 'string') {
+    throw new Error('url - argument should be a string');
+  }
+
+  if (!Array.isArray(whitelist)) {
+    throw new Error('whitelist - argument should be an array of url strings');
+  }
+}
+
+// Default events
+function initEvents() {
+  var _this2 = this;
+
+  this.on('connection:start', function () {
+    _this2.emit('connection:finished');
+    _this2.emit('start');
+  });
+
+  this.on('connection:finished', function () {
+    clearInterval(_this2.connectionInterval);
+    _this2.status = statuses.connected;
+
+    console.info('Connection established');
+  });
+}
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -60,7 +156,7 @@ var Emitter = function () {
   Emitter.prototype.emit = function emit(name) {
     try {
       if (this.isConnecter) {
-        this.frame.contentWindow.postMessage(name, this.url);
+        window.frames[FRAME_NAME].postMessage(name, this.url);
       } else {
         window.parent.postMessage(name, this.origin);
       }
@@ -85,109 +181,6 @@ var Emitter = function () {
 
   return Emitter;
 }();
-
-var statuses = {
-  disconnected: 'disconnected',
-  connecting: 'connecting',
-  connected: 'connected'
-};
-
-function attachListener(_ref) {
-  var origin = _ref.origin,
-      data = _ref.data;
-
-  if (!this.whitelist.includes(origin)) {
-    throw new Error(origin + ' - is not included in whitelist');
-  }
-
-  this.origin = origin;
-
-  if (this.events[data]) {
-    this.events[data]();
-  }
-}
-
-// Create connection function
-// creates iFrame and trying to connect inside with interval
-function createConnection() {
-  var _this = this;
-
-  var frame = document.createElement('iframe');
-
-  _extends(frame, {
-    name: 'theFrame',
-    src: this.url
-  });
-
-  frame.style.display = 'none';
-
-  document.body.append(frame);
-  var frameDoc = frame.contentDocument || frame.contentWindow.document;
-
-  if (frameDoc.readyState === 'complete') {
-    console.info('Frame loaded');
-
-    this.frame = frame;
-
-    this.connectionInterval = setInterval(function () {
-      _this.emit('connection:start');
-    }, 1000);
-
-    this.status = statuses.connecting;
-    return;
-  }
-
-  setTimeout(createConnection.bind(this), 500);
-}
-
-// Create connection listner on window
-function createConnectionListener() {
-  if (window.addEventListener) {
-    window.addEventListener('message', attachListener.bind(this), false);
-  } else {
-    window.attachEvent('onmessage', attachListener.bind(this));
-  }
-}
-
-// Validations
-function validateConstructor(isConnecter, url, whitelist) {
-  if (isConnecter && url === '') {
-    throw new Error('Please provide correct url for connections');
-  }
-
-  if (whitelist.length === 0) {
-    throw new Error('Please provide whitelist for connections');
-  }
-
-  if (typeof isConnecter !== 'boolean') {
-    throw new Error('isConnecter - argument should be a boolean');
-  }
-
-  if (typeof url !== 'string') {
-    throw new Error('url - argument should be a string');
-  }
-
-  if (!Array.isArray(whitelist)) {
-    throw new Error('whitelist - argument should be an array of url strings');
-  }
-}
-
-// Default events
-function initEvents() {
-  var _this2 = this;
-
-  this.on('connection:start', function () {
-    _this2.emit('connection:finished');
-    _this2.emit('start');
-  });
-
-  this.on('connection:finished', function () {
-    clearInterval(_this2.connectionInterval);
-    _this2.status = statuses.connected;
-
-    console.info('Connection established');
-  });
-}
 
 var Postmessage = function (_Emitter) {
   inherits(Postmessage, _Emitter);
