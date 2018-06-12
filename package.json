@@ -52,7 +52,7 @@
   },
   "ava": {
     "files": [
-      "test/*.js"
+      "__test__/*.js"
     ],
     "concurrency": 5,
     "failFast": true,
