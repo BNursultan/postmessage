@@ -1,3 +1,5 @@
+export const FRAME_NAME = 'theFionce';
+
 export const statuses = {
   disconnected: 'disconnected',
   connecting: 'connecting',
@@ -20,13 +22,9 @@ export function attachListener({ origin, data }) {
 // creates iFrame and trying to connect inside with interval
 export function createConnection() {
   const frame = document.createElement('iframe');
-
-  Object.assign(frame, {
-    name: 'theFrame',
-    src: this.url,
-  });
-
   frame.style.display = 'none';
+  frame.name = FRAME_NAME;
+  frame.src = this.url;
 
   document.body.append(frame);
   const frameDoc = frame.contentDocument || frame.contentWindow.document;

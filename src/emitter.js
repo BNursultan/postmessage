@@ -1,4 +1,5 @@
 // @flow
+import { FRAME_NAME } from './helpers';
 import type { OnFunction, Events } from './types';
 
 export default class Emitter {
@@ -20,7 +21,7 @@ export default class Emitter {
   emit(name: string): void {
     try {
       if (this.isConnecter) {
-        this.frame.contentWindow.postMessage(name, this.url);
+        window.frames[FRAME_NAME].postMessage(name, this.url);
       } else {
         window.parent.postMessage(name, this.origin);
       }
